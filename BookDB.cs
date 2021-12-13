@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-
-public delegate void ProcessBookDelegate(Book book);
+using System;
 
 public class BookDB
 {
+
     List<Book> list = new();
     public int TotalAmountOfBooks { get { return list.Count; } }
 
@@ -12,22 +12,22 @@ public class BookDB
         list.Add(new Book(title, author, price, paperBack));
     }
 
-    public void ProcessPaperbackBooks(ProcessBookDelegate processBook)
+    public void ProcessPaperbackBooks(Action<Book> bookAction)
     {
         foreach (Book b in list)
         {
             if (b.Paperback)
             {
-                processBook(b);
+                bookAction(b);
             }
         }
     }
 
-    public void ProcessAllBooks(ProcessBookDelegate processBook)
+    public void ProcessAllBooks(Action<Book> bookAction)
     {
         foreach (Book b in list)
         {
-            processBook(b);
+            bookAction(b);
         }
     }
 }

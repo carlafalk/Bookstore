@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -8,16 +9,27 @@ class Program
 
         AddExampleBooks(bookDB);
 
-        Console.WriteLine($"Total amount of books: {bookDB.Books.Count}");
+        // Console.WriteLine($"Total amount of books: {bookDB.TotalAmountOfBooks}");
 
-        Console.WriteLine("Paperback Book Titles:");
-        bookDB.ProcessPaperbackBooks(PrintBookTitle);
+        // Console.WriteLine("Paperback Book Titles:");
+        // bookDB.ProcessPaperbackBooks(PrintBookTitle);
 
-        PriceTotaller totaller = new PriceTotaller();
+        // PriceTotaller totaller = new PriceTotaller();
 
-        bookDB.ProcessPaperbackBooks(totaller.AddBookToTotal);
+        // bookDB.ProcessPaperbackBooks(totaller.AddBookToTotal);
 
-        Console.WriteLine("Average Paperback Book Price: ${0:#.##}", totaller.AveragePrice());
+        // Console.WriteLine("Average Paperback Book Price: ${0:#.##}", totaller.AveragePrice());
+
+        BooksInPriceRange booksInPriceRange = new();
+
+        bookDB.ProcessAllBooks(booksInPriceRange.GetSomewhatCheapBooks);
+
+        foreach (Book item in booksInPriceRange.ReturnListOfBooks())
+        {
+            Console.WriteLine(item.Title);
+        }
+
+
     }
 
     static void PrintBookTitle(Book b)
