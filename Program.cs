@@ -20,7 +20,7 @@ class Program
 
         // Console.WriteLine("Average Paperback Book Price: ${0:#.##}", totaller.AveragePrice());
 
-        BooksInPriceRange booksInPriceRange = new();
+        BooksInPriceRange booksInPriceRange = new(15, 100);
 
         bookDB.ProcessAllBooks(booksInPriceRange.GetSomewhatCheapBooks);
 
